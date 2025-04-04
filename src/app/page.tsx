@@ -15,25 +15,29 @@ export default function Home() {
       <section>
         <h2 className={styles.title}>Наушники</h2>
         <div className={styles.grid}>
-          {products.slice(0, 3).map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              onAddToCart={addToCart}
-            />
-          ))}
+          {products
+            .filter(product => product.feature === "wired")
+            .map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                onAddToCart={addToCart}
+              />
+            ))}
         </div>
       </section>
       <section>
         <h2 className={styles.title}>Беспроводные наушники</h2>
         <div className={styles.grid}>
-          {products.slice(3).map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              onAddToCart={addToCart}
-            />
-          ))}
+          {products
+            .filter(product => product.feature === "wireless")
+            .map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                onAddToCart={addToCart}
+              />
+            ))}
         </div>
       </section>
     </main>
