@@ -106,3 +106,24 @@
 .socialLink:hover {
     opacity: 0.7;
 }
+
+@media (max-width: 500px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logo {
+        margin-bottom: 20px;
+    }
+    .nav{
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .seviceLanguage{
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+}
