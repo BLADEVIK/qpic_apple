@@ -13,6 +13,12 @@ export const Header = ({ cartItemsCount }: HeaderProps) => {
                 QPICK
             </Link>
             <div className={styles.right}>
+                <Link href="/" className={styles.cartLink}>
+                    <Image src="/like.svg" alt="like" width={24} height={25} />
+                    {cartItemsCount > 0 && (
+                        <span className={styles.cartCount}>{cartItemsCount}</span>
+                    )}
+                </Link>
                 <Link href="/cart" className={styles.cartLink}>
                     <Image src="/basket.svg" alt="Cart" width={24} height={25} />
                     {cartItemsCount > 0 && (
