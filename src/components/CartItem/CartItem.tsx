@@ -37,12 +37,12 @@ export const CartItem = ({ item, onUpdateQuantity, onRemove }: CartItemProps) =>
                             +
                         </button>
                     </div>
-                    <button
-                        className={styles.deleteButton}
-                        onClick={() => onRemove(item.id)}
-                    >
-                        Удалить
-                    </button>
+                    <Image className={styles.basket_red} src="/basket-red.svg" alt="basket-red" width={20} height={20} onClick={() => onRemove(item.id)} />
+                    
+
+
+
+
                 </div>
             </div>
         </div>

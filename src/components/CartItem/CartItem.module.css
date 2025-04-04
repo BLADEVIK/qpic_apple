@@ -5,6 +5,7 @@
     background: #FFFFFF;
     border-radius: 30px;
     margin-bottom: 15px;
+    position: relative;
 }
 
 .image {
@@ -62,17 +63,16 @@
     background: #FFA542;
 }
 
-.deleteButton {
-    background: none;
-    border: none;
+.basket_red {
+    position: absolute;
+    top: 10%;
+    right: 3%;
     cursor: pointer;
-    color: #DF6464;
-    display: flex;
-    align-items: center;
-    gap: 5px;
     transition: opacity 0.3s ease;
 }
 
-.deleteButton:hover {
+.basket_red:hover {
     opacity: 0.7;
+
+
 }
