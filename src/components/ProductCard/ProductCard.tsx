@@ -18,20 +18,25 @@ export const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
                 height={220}
                 className={styles.image}
             />
-            <h3 className={styles.title}>{product.title}</h3>
-            <div className={styles.priceRow}>
-                <span className={styles.price}>{product.price} ₽</span>
+            <div className={styles.titlePrice}>
+                <h3 className={styles.title}>{product.title}</h3>
+                <div className={styles.prices}>
+                    <span className={styles.price}>{product.price} ₽</span>
+                    {(product.oldPrice ? (<span className={styles.oldPrice}>{product.oldPrice} ₽</span>) : (null))}
+                </div>
+            </div>
+            <div className={styles.ratingBuy}>
                 <div className={styles.rating}>
                     <StarIcon />
                     <span>{product.rate}</span>
                 </div>
+
+                <span className={styles.buy}
+                    onClick={() => onAddToCart(product)} >
+                    Купить
+                </span>
             </div>
-            <button
-                className={styles.button}
-                onClick={() => onAddToCart(product)}
-            >
-                Купить
-            </button>
+
         </div>
     );
 }; 

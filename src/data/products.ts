@@ -7,7 +7,8 @@ export const products: IProduct[] = [
     title: "Apple BYZ S852I",
     price: 2927,
     rate: 4.7,
-    feature: "wired"
+    feature: "wired",
+    oldPrice: 3527
   },
   {
     id: 2,
@@ -15,7 +16,8 @@ export const products: IProduct[] = [
     title: "Apple EarPods",
     price: 2327,
     rate: 4.5,
-    feature: "wired"
+    feature: "wired",
+    oldPrice: null
   },
   {
     id: 3,
@@ -23,7 +25,8 @@ export const products: IProduct[] = [
     title: "Apple EarPods",
     price: 2327,
     rate: 4.5,
-    feature: "wired"
+    feature: "wired",
+    oldPrice: null
   },
   {
     id: 4,
@@ -31,7 +34,8 @@ export const products: IProduct[] = [
     title: "Apple BYZ S852I",
     price: 2927,
     rate: 4.7,
-    feature: "wired"
+    feature: "wired",
+    oldPrice: null
   },
   {
     id: 5,
@@ -39,7 +43,8 @@ export const products: IProduct[] = [
     title: "Apple EarPods",
     price: 2327,
     rate: 4.5,
-    feature: "wired"
+    feature: "wired",
+    oldPrice: null
   },
   {
     id: 6,
@@ -47,7 +52,8 @@ export const products: IProduct[] = [
     title: "Apple EarPods",
     price: 2327,
     rate: 4.5,
-    feature: "wired"
+    feature: "wired",
+    oldPrice: null
   },
   {
     id: 7,
@@ -55,7 +61,8 @@ export const products: IProduct[] = [
     title: "Apple AirPods",
     price: 9527,
     rate: 4.7,
-    feature: "wireless"
+    feature: "wireless",
+    oldPrice: null
   },
   {
     id: 8,
@@ -63,7 +70,8 @@ export const products: IProduct[] = [
     title: "GERLAX GH-04",
     price: 6527,
     rate: 4.7,
-    feature: "wireless"
+    feature: "wireless",
+    oldPrice: null
   },
   {
     id: 9,
@@ -71,6 +79,7 @@ export const products: IProduct[] = [
     title: "BOROFONE BO4",
     price: 7527,
     rate: 4.7,
-    feature: "wireless"
+    feature: "wireless",
+    oldPrice: null
   }
 ]; 
