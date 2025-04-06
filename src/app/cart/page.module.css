@@ -56,7 +56,7 @@
     text-align: center;
     padding: 40px;
     color: #838383;
-    margin-bottom: 375px;
+    margin-bottom: 360px;
 }
 
 @media (max-width: 768px) {
@@ -68,7 +68,7 @@
 
 @media (max-width: 500px) {
     .empty {
-        margin-bottom: 215px;
+        margin-bottom: 200px;
     }
 
 }
