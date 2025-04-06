@@ -11,16 +11,14 @@ interface CartItemProps {
 export const CartItem = ({ item, onUpdateQuantity, onRemove }: CartItemProps) => {
     return (
         <div className={styles.item}>
-            <Image
-                src={item.img}
-                alt={item.title}
-                width={150}
-                height={150}
-                className={styles.image}
-            />
-            <div className={styles.info}>
-                <h3 className={styles.title}>{item.title}</h3>
-                <p className={styles.price}>{item.price} ₽</p>
+            <div className={styles.imageControls}>
+                <Image
+                    src={item.img}
+                    alt={item.title}
+                    width={140}
+                    height={140}
+                    className={styles.image}
+                />
                 <div className={styles.controls}>
                     <div className={styles.quantity}>
                         <button
@@ -38,12 +36,13 @@ export const CartItem = ({ item, onUpdateQuantity, onRemove }: CartItemProps) =>
                         </button>
                     </div>
                     <Image className={styles.basket_red} src="/basket-red.svg" alt="basket-red" width={20} height={20} onClick={() => onRemove(item.id)} />
-                    
-
-
-
-
                 </div>
+            </div>
+
+            <div className={styles.info}>
+                <h3 className={styles.title}>{item.title}</h3>
+                <p className={styles.price}>{item.price} ₽</p>
+
             </div>
         </div>
     );

@@ -56,11 +56,19 @@
     text-align: center;
     padding: 40px;
     color: #838383;
-    margin-bottom: 40%;
+    margin-bottom: 375px;
 }
 
 @media (max-width: 768px) {
     .content {
         grid-template-columns: 1fr;
     }
+
+}
+
+@media (max-width: 500px) {
+    .empty {
+        margin-bottom: 215px;
+    }
+
 }

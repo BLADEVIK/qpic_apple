@@ -6,13 +6,20 @@
     border-radius: 30px;
     margin-bottom: 15px;
     position: relative;
+    margin-right: 125px;
+}
+
+.imageControls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 20px;
 }
 
 .image {
-    width: 150px;
-    height: 150px;
+    width: 140px;
+    height: 140px;
     object-fit: contain;
-    margin-right: 20px;
 }
 
 .info {
@@ -27,9 +34,12 @@
 }
 
 .price {
+    font-family: 'Montserrat';
+    font-weight: 600;
     font-size: 15px;
-    color: #FFA542;
-    margin-bottom: 15px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #AAAAAA;
 }
 
 .controls {
@@ -41,12 +51,12 @@
 .quantity {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 25px;
 }
 
 .quantityButton {
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
     border: none;
     border-radius: 50%;
     background: #FFCE7F;

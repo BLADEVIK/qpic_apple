@@ -71,9 +71,9 @@
     color: #101010;
     font-size: 17px;
     cursor: pointer;
-    transition: opacity 0.3s ease;
+    transition: color 0.3s ease;
 }
 
 .buy:hover {
-    opacity: 0.7;
+   color: #FFA542;
 }
