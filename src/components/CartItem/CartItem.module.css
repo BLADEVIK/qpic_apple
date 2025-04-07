@@ -86,3 +86,9 @@
 
 
 }
+
+@media (max-width: 900px) {
+    .item {
+        margin-right: 0;
+    }
+}
