@@ -1,8 +1,8 @@
-import { IProduct } from '@/types/types';
+import { IProduct, ICartItem } from '@/types/types';
 import { useState, useEffect } from 'react';
 
 export const useFavorites = () => {
-    const [favoriteItems, setFavoriteItems] = useState<IProduct[]>([]);
+    const [favoriteItems, setFavoriteItems] = useState<ICartItem[]>([]);
 
     useEffect(() => {
         const savedFavorites = sessionStorage.getItem('favorites');
@@ -11,14 +11,14 @@ export const useFavorites = () => {
         }
     }, []);
 
-    const saveFavorites = (items: IProduct[]) => {
+    const saveFavorites = (items: ICartItem[]) => {
         sessionStorage.setItem('favorites', JSON.stringify(items));
         setFavoriteItems(items);
     };
 
     const addToFavorites = (product: IProduct) => {
         if (!isInFavorites(product.id)) {
-            saveFavorites([...favoriteItems, product]);
+            saveFavorites([...favoriteItems, { ...product, quantity: 1 }]);
         }
     };
 
@@ -38,8 +38,20 @@ export const useFavorites = () => {
         }
     };
 
+    const updateQuantity = (productId: number, quantity: number) => {
+        if (quantity < 1) {
+            removeFromFavorites(productId);
+            return;
+        }
+
+        const updatedItems = favoriteItems.map(item =>
+            item.id === productId ? { ...item, quantity } : item
+        );
+        saveFavorites(updatedItems);
+    };
+
     const getFavoritesCount = () => {
-        return favoriteItems.length;
+        return favoriteItems.reduce((total, item) => total + item.quantity, 0);
     };
 
     return {
@@ -48,6 +60,7 @@ export const useFavorites = () => {
         removeFromFavorites,
         isInFavorites,
         toggleFavorite,
+        updateQuantity,
         getFavoritesCount
     };
 };

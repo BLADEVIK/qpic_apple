@@ -10,12 +10,13 @@ export default function Favourites() {
     const {
         favoriteItems,
         removeFromFavorites,
+        updateQuantity,
         getFavoritesCount
     } = useFavorites();
 
     // Функция для подсчета общей суммы цен товаров в избранном
     const totalPrice = useMemo(() => {
-        return favoriteItems.reduce((total, item) => total + item.price, 0);
+        return favoriteItems.reduce((total, item) => total + item.price * item.quantity, 0);
     }, [favoriteItems]);
 
     return (
@@ -27,8 +28,8 @@ export default function Favourites() {
                         {favoriteItems.map((item) => (
                             <CartItem
                                 key={item.id}
-                                item={{ ...item, quantity: 1 }}
-                                onUpdateQuantity={() => { }}
+                                item={item}
+                                onUpdateQuantity={updateQuantity}
                                 onRemove={() => removeFromFavorites(item.id)}
                             />
                         ))}
