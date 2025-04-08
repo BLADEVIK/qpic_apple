@@ -68,12 +68,13 @@
 }
 
 .languageActive {
-    font-weight: 600;
     color: #FFA542;
+    cursor: pointer;
 }
 
 .languageInactive {
     color: black;
+    cursor: pointer;
 }
 
 .socials {

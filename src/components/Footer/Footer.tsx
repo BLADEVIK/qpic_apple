@@ -1,10 +1,22 @@
+'use client';
 import Link from 'next/link';
-// import { FaVk, FaTelegramPlane, FaWhatsapp } from 'react-icons/fa'; // Import icons
 import styles from './Footer.module.css';
 import Image from 'next/image';
 import classNames from 'classnames';
+import { useState } from 'react';
 
 const Footer = () => {
+    const [activeLanguage, setActiveLanguage] = useState('ru');
+
+    const handleLanguageChange = () => {
+        if (activeLanguage === 'ru') {
+            setActiveLanguage('en')
+        }
+        if (activeLanguage === 'en') {
+            setActiveLanguage('ru')
+        }
+    };
+
     return (
         <footer className={styles.footer}>
             <div className={styles.container}>
@@ -22,8 +34,18 @@ const Footer = () => {
                         <Link href="#" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
                             <Image src="/language.svg" alt="VK" width={31} height={21} />
                         </Link>
-                        <Link href="#" className={styles.languageActive}>Рус</Link>
-                        <Link href="#" className={classNames(styles.languageActive, styles.languageInactive)}>Eng</Link>
+                        <span
+                            onClick={() => handleLanguageChange()}
+                            className={classNames({ [styles.languageActive]: activeLanguage === 'ru', [styles.languageInactive]: activeLanguage === 'en' })}
+                        >
+                            Рус
+                        </span>
+                        <span
+                            onClick={() => handleLanguageChange()}
+                            className={classNames({ [styles.languageActive]: activeLanguage === 'en', [styles.languageInactive]: activeLanguage === 'ru' })}
+                        >
+                            Eng
+                        </span>
                     </div>
                 </nav>
 
@@ -39,7 +61,7 @@ const Footer = () => {
                     </Link>
                 </div>
             </div>
-        </footer >
+        </footer>
     );
 };
 
