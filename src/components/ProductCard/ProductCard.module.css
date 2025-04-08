@@ -7,11 +7,19 @@
     align-items: center;
     transition: all 0.3s ease;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    position: relative;
 }
 
 .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+}
+
+.imageLike {
+    position: absolute;
+    top: 8%;
+    right: 8%;
+    cursor: pointer;
 }
 
 .image {

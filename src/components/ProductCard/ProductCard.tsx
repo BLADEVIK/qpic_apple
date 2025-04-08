@@ -12,6 +12,14 @@ export const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
     return (
         <div className={styles.card}>
             <Image
+                src="./like.svg"
+                alt="like"
+                width={22}
+                height={22}
+                className={styles.imageLike}
+                onClick={() => onAddToCart(product)}
+            />
+            <Image
                 src={product.img}
                 alt={product.title}
                 width={220}
