@@ -5,6 +5,9 @@ import { CartItem } from '@/components/CartItem/CartItem';
 import { useCart } from '@/hooks/useCart';
 import { useFavorites } from '@/hooks/useFavorites';
 import styles from './page.module.css';
+import { useState } from 'react';
+import { Modal } from '@/components/Modal/Modal';
+import { CheckoutForm, CheckoutFormData } from '@/components/CheckoutForm/CheckoutForm';
 
 export default function Cart() {
     const {
@@ -16,6 +19,33 @@ export default function Cart() {
     } = useCart();
 
     const { getFavoritesCount } = useFavorites();
+
+    const [isCheckoutModalOpen, setIsCheckoutModalOpen] = useState(false);
+
+    const handleCheckout = () => {
+        setIsCheckoutModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsCheckoutModalOpen(false);
+    };
+
+    const handleSubmitOrder = (formData: CheckoutFormData) => {
+        // Здесь можно добавить логику отправки заказа на сервер
+        console.log('Заказ оформлен:', formData);
+        console.log('Товары:', cartItems);
+        console.log('Общая сумма:', getTotalPrice());
+
+        // Закрываем модальное окно
+        setIsCheckoutModalOpen(false);
+
+        // Очищаем корзину после успешного оформления заказа
+        // Это можно сделать, добавив функцию clearCart в хук useCart
+        // clearCart();
+
+        // Показываем сообщение об успешном оформлении заказа
+        alert('Заказ успешно оформлен! Спасибо за покупку!');
+    };
 
     return (
         <main className={styles.main}>
@@ -37,7 +67,10 @@ export default function Cart() {
                             <span>ИТОГО</span>
                             <span className={styles.totalPrice}>{getTotalPrice()} ₽</span>
                         </div>
-                        <button className={styles.checkoutButton}>
+                        <button
+                            className={styles.checkoutButton}
+                            onClick={handleCheckout}
+                        >
                             Перейти к оформлению
                         </button>
                     </div>
@@ -47,6 +80,13 @@ export default function Cart() {
                     <h2>Корзина пуста</h2>
                 </div>
             )}
+
+            <Modal isOpen={isCheckoutModalOpen} onClose={handleCloseModal}>
+                <CheckoutForm
+                    totalAmount={getTotalPrice()}
+                    onSubmit={handleSubmitOrder}
+                />
+            </Modal>
         </main>
     );
 }

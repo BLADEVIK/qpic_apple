@@ -4,7 +4,9 @@ import { Header } from '@/components/Header/Header';
 import { CartItem } from '@/components/CartItem/CartItem';
 import styles from './page.module.css';
 import { useFavorites } from '@/hooks/useFavorites';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
+import { Modal } from '@/components/Modal/Modal';
+import { CheckoutForm, CheckoutFormData } from '@/components/CheckoutForm/CheckoutForm';
 
 export default function Favourites() {
     const {
@@ -14,10 +16,37 @@ export default function Favourites() {
         getFavoritesCount
     } = useFavorites();
 
+    const [isCheckoutModalOpen, setIsCheckoutModalOpen] = useState(false);
+
     // Функция для подсчета общей суммы цен товаров в избранном
     const totalPrice = useMemo(() => {
         return favoriteItems.reduce((total, item) => total + item.price * item.quantity, 0);
     }, [favoriteItems]);
+
+    const handleCheckout = () => {
+        setIsCheckoutModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsCheckoutModalOpen(false);
+    };
+
+    const handleSubmitOrder = (formData: CheckoutFormData) => {
+        // Здесь можно добавить логику отправки заказа на сервер
+        console.log('Заказ оформлен:', formData);
+        console.log('Товары:', favoriteItems);
+        console.log('Общая сумма:', totalPrice);
+
+        // Закрываем модальное окно
+        setIsCheckoutModalOpen(false);
+
+        // Очищаем избранное после успешного оформления заказа
+        // Это можно сделать, добавив функцию clearFavorites в хук useFavorites
+        // clearFavorites();
+
+        // Показываем сообщение об успешном оформлении заказа
+        alert('Заказ успешно оформлен! Спасибо за покупку!');
+    };
 
     return (
         <main className={styles.main}>
@@ -39,7 +68,10 @@ export default function Favourites() {
                             <span>ИТОГО</span>
                             <span className={styles.totalPrice}>{totalPrice} ₽</span>
                         </div>
-                        <button className={styles.checkoutButton}>
+                        <button
+                            className={styles.checkoutButton}
+                            onClick={handleCheckout}
+                        >
                             Перейти к оформлению
                         </button>
                     </div>
@@ -49,6 +81,13 @@ export default function Favourites() {
                     <h2>В избранном пусто</h2>
                 </div>
             )}
+
+            <Modal isOpen={isCheckoutModalOpen} onClose={handleCloseModal}>
+                <CheckoutForm
+                    totalAmount={totalPrice}
+                    onSubmit={handleSubmitOrder}
+                />
+            </Modal>
         </main>
     );
 }
