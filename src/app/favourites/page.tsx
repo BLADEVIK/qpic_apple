@@ -4,6 +4,7 @@ import { Header } from '@/components/Header/Header';
 import { CartItem } from '@/components/CartItem/CartItem';
 import styles from './page.module.css';
 import { useFavorites } from '@/hooks/useFavorites';
+import { useMemo } from 'react';
 
 export default function Favourites() {
     const {
@@ -11,6 +12,11 @@ export default function Favourites() {
         removeFromFavorites,
         getFavoritesCount
     } = useFavorites();
+
+    // Функция для подсчета общей суммы цен товаров в избранном
+    const totalPrice = useMemo(() => {
+        return favoriteItems.reduce((total, item) => total + item.price, 0);
+    }, [favoriteItems]);
 
     return (
         <main className={styles.main}>
@@ -30,7 +36,7 @@ export default function Favourites() {
                     <div className={styles.summary}>
                         <div className={styles.total}>
                             <span>ИТОГО</span>
-                            <span className={styles.totalPrice}>0 ₽</span>
+                            <span className={styles.totalPrice}>{totalPrice} ₽</span>
                         </div>
                         <button className={styles.checkoutButton}>
                             Перейти к оформлению
