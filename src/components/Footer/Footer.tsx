@@ -12,7 +12,7 @@ const Footer = () => {
                     QPICK
                 </Link>
                 <nav className={styles.nav}>
-                    <Link href="/favorites">Избранное</Link>
+                    <Link href="/favourites">Избранное</Link>
                     <Link href="/cart">Корзина</Link>
                     <Link href="/contacts">Контакты</Link>
                 </nav>
@@ -39,7 +39,7 @@ const Footer = () => {
                     </Link>
                 </div>
             </div>
-        </footer>
+        </footer >
     );
 };
 
