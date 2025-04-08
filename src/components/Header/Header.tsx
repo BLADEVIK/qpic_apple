@@ -4,9 +4,10 @@ import styles from './Header.module.css';
 
 interface HeaderProps {
     cartItemsCount: number;
+    favoritesCount: number;
 }
 
-export const Header = ({ cartItemsCount }: HeaderProps) => {
+export const Header = ({ cartItemsCount, favoritesCount }: HeaderProps) => {
     return (
         <header className={styles.header}>
             <Link href="/" className={styles.logo}>
@@ -15,6 +16,9 @@ export const Header = ({ cartItemsCount }: HeaderProps) => {
             <div className={styles.right}>
                 <Link href="/favourites" className={styles.cartLink}>
                     <Image src="/like.svg" alt="like" width={24} height={25} />
+                    {favoritesCount > 0 && (
+                        <span className={styles.cartCount}>{favoritesCount}</span>
+                    )}
                 </Link>
                 <Link href="/cart" className={styles.cartLink}>
                     <Image src="/basket.svg" alt="Cart" width={24} height={25} />
@@ -25,4 +29,4 @@ export const Header = ({ cartItemsCount }: HeaderProps) => {
             </div>
         </header>
     );
-}; 
+};

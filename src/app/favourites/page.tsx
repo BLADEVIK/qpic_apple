@@ -2,37 +2,35 @@
 
 import { Header } from '@/components/Header/Header';
 import { CartItem } from '@/components/CartItem/CartItem';
-import { useCart } from '@/hooks/useCart';
 import styles from './page.module.css';
+import { useFavorites } from '@/hooks/useFavorites';
 
-export default function Cart() {
+export default function Favourites() {
     const {
-        cartItems,
-        updateQuantity,
-        removeFromCart,
-        getTotalPrice,
-        getTotalItems
-    } = useCart();
+        favoriteItems,
+        removeFromFavorites,
+        getFavoritesCount
+    } = useFavorites();
 
     return (
         <main className={styles.main}>
-            <Header cartItemsCount={getTotalItems()} />
-            {cartItems.length > 0 ? (
+            <Header cartItemsCount={0} favoritesCount={getFavoritesCount()} />
+            {favoriteItems.length > 0 ? (
                 <div className={styles.content}>
                     <div className={styles.cartItems}>
-                        {cartItems.map((item) => (
+                        {favoriteItems.map((item) => (
                             <CartItem
                                 key={item.id}
-                                item={item}
-                                onUpdateQuantity={updateQuantity}
-                                onRemove={removeFromCart}
+                                item={{ ...item, quantity: 1 }}
+                                onUpdateQuantity={() => { }}
+                                onRemove={() => removeFromFavorites(item.id)}
                             />
                         ))}
                     </div>
                     <div className={styles.summary}>
                         <div className={styles.total}>
                             <span>ИТОГО</span>
-                            <span className={styles.totalPrice}>{getTotalPrice()} ₽</span>
+                            <span className={styles.totalPrice}>0 ₽</span>
                         </div>
                         <button className={styles.checkoutButton}>
                             Перейти к оформлению

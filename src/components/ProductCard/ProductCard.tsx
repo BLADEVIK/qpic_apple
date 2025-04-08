@@ -6,9 +6,10 @@ import { StarIcon } from '@/components/Icons/StarIcon';
 interface ProductCardProps {
     product: IProduct;
     onAddToCart: (product: IProduct) => void;
+    onAddToFavorites: (product: IProduct) => void;
 }
 
-export const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
+export const ProductCard = ({ product, onAddToCart, onAddToFavorites }: ProductCardProps) => {
     return (
         <div className={styles.card}>
             <Image
@@ -17,7 +18,7 @@ export const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
                 width={22}
                 height={22}
                 className={styles.imageLike}
-                onClick={() => onAddToCart(product)}
+                onClick={() => onAddToFavorites(product)}
             />
             <Image
                 src={product.img}
@@ -44,7 +45,6 @@ export const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
                     Купить
                 </span>
             </div>
-
         </div>
     );
-}; 
+};

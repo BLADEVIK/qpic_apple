@@ -3,6 +3,7 @@
 import { Header } from '@/components/Header/Header';
 import { CartItem } from '@/components/CartItem/CartItem';
 import { useCart } from '@/hooks/useCart';
+import { useFavorites } from '@/hooks/useFavorites';
 import styles from './page.module.css';
 
 export default function Cart() {
@@ -14,9 +15,11 @@ export default function Cart() {
         getTotalItems
     } = useCart();
 
+    const { getFavoritesCount } = useFavorites();
+
     return (
         <main className={styles.main}>
-            <Header cartItemsCount={getTotalItems()} />
+            <Header cartItemsCount={getTotalItems()} favoritesCount={getFavoritesCount()} />
             {cartItems.length > 0 ? (
                 <div className={styles.content}>
                     <div className={styles.cartItems}>
