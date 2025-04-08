@@ -17,9 +17,7 @@ export const useFavorites = () => {
     };
 
     const addToFavorites = (product: IProduct) => {
-        const existingItem = favoriteItems.find(item => item.id === product.id);
-
-        if (!existingItem) {
+        if (!isInFavorites(product.id)) {
             saveFavorites([...favoriteItems, product]);
         }
     };
@@ -32,6 +30,14 @@ export const useFavorites = () => {
         return favoriteItems.some(item => item.id === productId);
     };
 
+    const toggleFavorite = (product: IProduct) => {
+        if (isInFavorites(product.id)) {
+            removeFromFavorites(product.id);
+        } else {
+            addToFavorites(product);
+        }
+    };
+
     const getFavoritesCount = () => {
         return favoriteItems.length;
     };
@@ -41,9 +47,7 @@ export const useFavorites = () => {
         addToFavorites,
         removeFromFavorites,
         isInFavorites,
+        toggleFavorite,
         getFavoritesCount
     };
 };
-
-// const { getFavoritesCount } = useFavorites();
-// const favoritesCount = getFavoritesCount();

@@ -9,7 +9,7 @@ import { useFavorites } from '@/hooks/useFavorites';
 
 export default function Home() {
   const { addToCart, getTotalItems } = useCart();
-  const { addToFavorites, getFavoritesCount } = useFavorites();
+  const { getFavoritesCount, isInFavorites, toggleFavorite } = useFavorites();
   return (
     <main className={styles.main}>
       <Header cartItemsCount={getTotalItems()} favoritesCount={getFavoritesCount()} />
@@ -23,7 +23,8 @@ export default function Home() {
                 key={product.id}
                 product={product}
                 onAddToCart={addToCart}
-                onAddToFavorites={addToFavorites}
+                isInFavorites={isInFavorites(product.id)}
+                onToggleFavorite={toggleFavorite}
               />
             ))}
         </div>
@@ -38,7 +39,8 @@ export default function Home() {
                 key={product.id}
                 product={product}
                 onAddToCart={addToCart}
-                onAddToFavorites={addToFavorites}
+                isInFavorites={isInFavorites(product.id)}
+                onToggleFavorite={toggleFavorite}
               />
             ))}
         </div>

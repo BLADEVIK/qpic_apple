@@ -6,19 +6,25 @@ import { StarIcon } from '@/components/Icons/StarIcon';
 interface ProductCardProps {
     product: IProduct;
     onAddToCart: (product: IProduct) => void;
-    onAddToFavorites: (product: IProduct) => void;
+    isInFavorites: boolean;
+    onToggleFavorite: (product: IProduct) => void;
 }
 
-export const ProductCard = ({ product, onAddToCart, onAddToFavorites }: ProductCardProps) => {
+export const ProductCard = ({
+    product,
+    onAddToCart,
+    isInFavorites,
+    onToggleFavorite
+}: ProductCardProps) => {
     return (
         <div className={styles.card}>
             <Image
-                src="./like.svg"
+                src={isInFavorites ? "./like1.svg" : "./like0.svg"}
                 alt="like"
                 width={22}
                 height={22}
                 className={styles.imageLike}
-                onClick={() => onAddToFavorites(product)}
+                onClick={() => onToggleFavorite(product)}
             />
             <Image
                 src={product.img}
