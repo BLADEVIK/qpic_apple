@@ -7,6 +7,7 @@ import { useFavorites } from '@/hooks/useFavorites';
 import { useMemo, useState } from 'react';
 import { Modal } from '@/components/Modal/Modal';
 import { CheckoutForm, CheckoutFormData } from '@/components/CheckoutForm/CheckoutForm';
+import { useCart } from '@/hooks/useCart';
 
 export default function Favourites() {
     const {
@@ -15,6 +16,8 @@ export default function Favourites() {
         updateQuantity,
         getFavoritesCount
     } = useFavorites();
+
+    const { getTotalItems } = useCart();
 
     const [isCheckoutModalOpen, setIsCheckoutModalOpen] = useState(false);
 
@@ -31,19 +34,17 @@ export default function Favourites() {
     };
 
     const handleSubmitOrder = (formData: CheckoutFormData) => {
-
         console.log('Заказ оформлен:', formData);
         console.log('Товары:', favoriteItems);
         console.log('Общая сумма:', totalPrice);
 
         setIsCheckoutModalOpen(false);
-
         alert('Заказ успешно оформлен! Спасибо за покупку!');
     };
 
     return (
         <main className={styles.main}>
-            <Header cartItemsCount={0} favoritesCount={getFavoritesCount()} />
+            <Header cartItemsCount={getTotalItems()} favoritesCount={getFavoritesCount()} />
             {favoriteItems.length > 0 ? (
                 <div className={styles.content}>
                     <div className={styles.cartItems}>
