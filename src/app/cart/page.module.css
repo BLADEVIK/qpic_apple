@@ -73,11 +73,17 @@
         grid-template-columns: 1fr;
     }
 
+    .summary {
+        margin-top: 0%;
+    }
+
 }
+
 
 @media (max-width: 500px) {
     .empty {
         margin-bottom: 200px;
     }
+
 
 }
