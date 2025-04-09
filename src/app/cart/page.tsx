@@ -31,23 +31,23 @@ export default function Cart() {
     };
 
     const handleSubmitOrder = (formData: CheckoutFormData) => {
-        // Здесь можно добавить логику отправки заказа на сервер
         console.log('Заказ оформлен:', formData);
         console.log('Товары:', cartItems);
         console.log('Общая сумма:', getTotalPrice());
 
-        // Закрываем модальное окно
         setIsCheckoutModalOpen(false);
-        // Показываем сообщение об успешном оформлении заказа
+
         alert('Заказ успешно оформлен! Спасибо за покупку!');
     };
 
     return (
+        
         <main className={styles.main}>
             <Header cartItemsCount={getTotalItems()} favoritesCount={getFavoritesCount()} />
             {cartItems.length > 0 ? (
                 <div className={styles.content}>
                     <div className={styles.cartItems}>
+                    <h2 className={styles.titlePage}>Корзина</h2>
                         {cartItems.map((item) => (
                             <CartItem
                                 key={item.id}
@@ -72,7 +72,7 @@ export default function Cart() {
                 </div>
             ) : (
                 <div className={styles.empty}>
-                    <h2>Корзина пуста</h2>
+                    <h2 className={styles.titleCart}>Корзина пуста</h2>
                 </div>
             )}
 

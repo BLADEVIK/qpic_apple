@@ -1,16 +1,19 @@
 .header {
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 0;
+    padding: 20px 10px;
     margin-bottom: 30px;
     border: 1px solid #eaeaea;
     background: #eaeaea;
     position: fixed;
     z-index: 1;
-    width: 1080px;
+    max-width: 1080px;
     height: 50px;
     top: 0px;
+    margin-right: 15px;
+    width: -webkit-fill-available;
 }
 
 .logo {

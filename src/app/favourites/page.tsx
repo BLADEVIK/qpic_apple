@@ -18,7 +18,6 @@ export default function Favourites() {
 
     const [isCheckoutModalOpen, setIsCheckoutModalOpen] = useState(false);
 
-    // Функция для подсчета общей суммы цен товаров в избранном
     const totalPrice = useMemo(() => {
         return favoriteItems.reduce((total, item) => total + item.price * item.quantity, 0);
     }, [favoriteItems]);
@@ -32,19 +31,13 @@ export default function Favourites() {
     };
 
     const handleSubmitOrder = (formData: CheckoutFormData) => {
-        // Здесь можно добавить логику отправки заказа на сервер
+
         console.log('Заказ оформлен:', formData);
         console.log('Товары:', favoriteItems);
         console.log('Общая сумма:', totalPrice);
 
-        // Закрываем модальное окно
         setIsCheckoutModalOpen(false);
 
-        // Очищаем избранное после успешного оформления заказа
-        // Это можно сделать, добавив функцию clearFavorites в хук useFavorites
-        // clearFavorites();
-
-        // Показываем сообщение об успешном оформлении заказа
         alert('Заказ успешно оформлен! Спасибо за покупку!');
     };
 
@@ -54,6 +47,7 @@ export default function Favourites() {
             {favoriteItems.length > 0 ? (
                 <div className={styles.content}>
                     <div className={styles.cartItems}>
+                        <h2 className={styles.titlePage}>Избранное</h2>
                         {favoriteItems.map((item) => (
                             <CartItem
                                 key={item.id}
@@ -78,7 +72,7 @@ export default function Favourites() {
                 </div>
             ) : (
                 <div className={styles.empty}>
-                    <h2>В избранном пусто</h2>
+                    <h2 className={styles.titleFavorites}>В избранном пусто</h2>
                 </div>
             )}
 
