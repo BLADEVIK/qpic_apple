@@ -11,8 +11,12 @@
 .totalAmount {
     font-size: 18px;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     text-align: center;
+}
+
+.totalAmountPrice {
+    color: #ffa542;
 }
 
 .formGroup {
@@ -23,6 +27,7 @@
     display: block;
     margin-bottom: 5px;
     font-weight: 500;
+    color: #838383;
 }
 
 .formGroup input {
@@ -31,16 +36,23 @@
     border: 1px solid #ddd;
     border-radius: 20px;
     font-size: 16px;
+    cursor: pointer;
+    transition: border 0.3s ease-in-out;
+}
+
+.formGroup input:hover {
+    border: 1px solid #838383;
 }
 
 .sectionTitle {
-    margin: 20px 0 15px;
+    margin: 15px 0;
     font-size: 18px;
+    text-align: center;
 }
 
 .cardDetails {
     display: flex;
-    gap: 15px;
+    gap: 10px;
 }
 
 .cardDetails .formGroup {

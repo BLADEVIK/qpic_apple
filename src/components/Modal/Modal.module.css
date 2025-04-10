@@ -18,8 +18,9 @@
     max-width: 500px;
     width: 100%;
     position: relative;
-    max-height: 90vh;
+    max-height: 100%;
     overflow-y: auto;
+    margin: 0 15px;
 }
 
 .closeButton {

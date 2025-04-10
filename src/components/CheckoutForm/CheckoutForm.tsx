@@ -10,7 +10,6 @@ export interface CheckoutFormData {
     name: string;
     email: string;
     phone: string;
-    address: string;
     cardNumber: string;
     cardExpiry: string;
     cardCvv: string;
@@ -21,7 +20,6 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ totalAmount, onSubmi
         name: '',
         email: '',
         phone: '',
-        address: '',
         cardNumber: '',
         cardExpiry: '',
         cardCvv: ''
@@ -40,7 +38,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ totalAmount, onSubmi
     return (
         <div className={styles.checkoutForm}>
             <h2 className={styles.title}>Оформление заказа</h2>
-            <p className={styles.totalAmount}>Итого к оплате: {totalAmount} ₽</p>
+            <p className={styles.totalAmount}>Итого к оплате: <span className={styles.totalAmountPrice}>{totalAmount} ₽</span></p>
 
             <form onSubmit={handleSubmit}>
                 <div className={styles.formGroup}>
@@ -78,9 +76,6 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ totalAmount, onSubmi
                         required
                     />
                 </div>
-
-
-
                 <h3 className={styles.sectionTitle}>Данные карты</h3>
 
                 <div className={styles.formGroup}>
