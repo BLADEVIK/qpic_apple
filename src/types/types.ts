@@ -4,6 +4,8 @@ export interface IProduct {
   title: string;
   price: number;
   rate: number;
+  feature: string;
+  oldPrice: number | null;
 }
 
 export interface ICartItem extends IProduct {

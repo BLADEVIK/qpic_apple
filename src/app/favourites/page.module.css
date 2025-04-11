@@ -8,7 +8,7 @@
     margin-top: 80px;
 }
 
-.titleCart {
+.titleFavorites {
     margin-top: 30px;
 }
 
@@ -79,11 +79,11 @@
 
 }
 
-
 @media (max-width: 500px) {
     .empty {
         margin-bottom: 200px;
     }
+
 
 
 }

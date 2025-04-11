@@ -5,35 +5,44 @@ import { Header } from '@/components/Header/Header';
 import { ProductCard } from '@/components/ProductCard/ProductCard';
 import { useCart } from '@/hooks/useCart';
 import styles from './page.module.css';
+import { useFavorites } from '@/hooks/useFavorites';
 
 export default function Home() {
   const { addToCart, getTotalItems } = useCart();
-
+  const { getFavoritesCount, isInFavorites, toggleFavorite } = useFavorites();
   return (
     <main className={styles.main}>
-      <Header cartItemsCount={getTotalItems()} />
+      <Header cartItemsCount={getTotalItems()} favoritesCount={getFavoritesCount()} />
       <section>
         <h2 className={styles.title}>Наушники</h2>
         <div className={styles.grid}>
-          {products.slice(0, 3).map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              onAddToCart={addToCart}
-            />
-          ))}
+          {products
+            .filter(product => product.feature === "wired")
+            .map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                onAddToCart={addToCart}
+                isInFavorites={isInFavorites(product.id)}
+                onToggleFavorite={toggleFavorite}
+              />
+            ))}
         </div>
       </section>
       <section>
         <h2 className={styles.title}>Беспроводные наушники</h2>
         <div className={styles.grid}>
-          {products.slice(3).map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              onAddToCart={addToCart}
-            />
-          ))}
+          {products
+            .filter(product => product.feature === "wireless")
+            .map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                onAddToCart={addToCart}
+                isInFavorites={isInFavorites(product.id)}
+                onToggleFavorite={toggleFavorite}
+              />
+            ))}
         </div>
       </section>
     </main>

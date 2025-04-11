@@ -2,25 +2,28 @@
 
 import { Header } from '@/components/Header/Header';
 import { CartItem } from '@/components/CartItem/CartItem';
-import { useCart } from '@/hooks/useCart';
-import { useFavorites } from '@/hooks/useFavorites';
 import styles from './page.module.css';
-import { useState } from 'react';
+import { useFavorites } from '@/hooks/useFavorites';
+import { useMemo, useState } from 'react';
 import { Modal } from '@/components/Modal/Modal';
 import { CheckoutForm, CheckoutFormData } from '@/components/CheckoutForm/CheckoutForm';
+import { useCart } from '@/hooks/useCart';
 
-export default function Cart() {
+export default function Favourites() {
     const {
-        cartItems,
+        favoriteItems,
+        removeFromFavorites,
         updateQuantity,
-        removeFromCart,
-        getTotalPrice,
-        getTotalItems
-    } = useCart();
+        getFavoritesCount
+    } = useFavorites();
 
-    const { getFavoritesCount } = useFavorites();
+    const { getTotalItems } = useCart();
 
     const [isCheckoutModalOpen, setIsCheckoutModalOpen] = useState(false);
+
+    const totalPrice = useMemo(() => {
+        return favoriteItems.reduce((total, item) => total + item.price * item.quantity, 0);
+    }, [favoriteItems]);
 
     const handleCheckout = () => {
         setIsCheckoutModalOpen(true);
@@ -32,35 +35,33 @@ export default function Cart() {
 
     const handleSubmitOrder = (formData: CheckoutFormData) => {
         console.log('Заказ оформлен:', formData);
-        console.log('Товары:', cartItems);
-        console.log('Общая сумма:', getTotalPrice());
+        console.log('Товары:', favoriteItems);
+        console.log('Общая сумма:', totalPrice);
 
         setIsCheckoutModalOpen(false);
-
         alert('Заказ успешно оформлен! Спасибо за покупку!');
     };
 
     return (
-        
         <main className={styles.main}>
             <Header cartItemsCount={getTotalItems()} favoritesCount={getFavoritesCount()} />
-            {cartItems.length > 0 ? (
+            {favoriteItems.length > 0 ? (
                 <div className={styles.content}>
                     <div className={styles.cartItems}>
-                    <h2 className={styles.titlePage}>Корзина</h2>
-                        {cartItems.map((item) => (
+                        <h2 className={styles.titlePage}>Избранное</h2>
+                        {favoriteItems.map((item) => (
                             <CartItem
                                 key={item.id}
                                 item={item}
                                 onUpdateQuantity={updateQuantity}
-                                onRemove={removeFromCart}
+                                onRemove={() => removeFromFavorites(item.id)}
                             />
                         ))}
                     </div>
                     <div className={styles.summary}>
                         <div className={styles.total}>
                             <span>ИТОГО</span>
-                            <span className={styles.totalPrice}>{getTotalPrice()} ₽</span>
+                            <span className={styles.totalPrice}>{totalPrice} ₽</span>
                         </div>
                         <button
                             className={styles.checkoutButton}
@@ -72,13 +73,13 @@ export default function Cart() {
                 </div>
             ) : (
                 <div className={styles.empty}>
-                    <h2 className={styles.titleCart}>Корзина пуста</h2>
+                    <h2 className={styles.titleFavorites}>В избранном пусто</h2>
                 </div>
             )}
 
             <Modal isOpen={isCheckoutModalOpen} onClose={handleCloseModal}>
                 <CheckoutForm
-                    totalAmount={getTotalPrice()}
+                    totalAmount={totalPrice}
                     onSubmit={handleSubmitOrder}
                 />
             </Modal>
